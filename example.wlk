@@ -1,9 +1,15 @@
-object pepita {
-  var energy = 100
+object paquete {
+  var esPaquetePago = false
+  var peso = 500
 
-  method energy() = energy
+  method esPaquetePago() = esPaquetePago
 
-  method fly(minutes) {
-    energy = energy - minutes * 3
+  method marcarComoPago() {
+    esPaquetePago = true
+  }
+
+  method pesoEnKg() = peso
+  method cambiarPeso(nuevoPeso) {
+    peso = nuevoPeso
   }
 }
