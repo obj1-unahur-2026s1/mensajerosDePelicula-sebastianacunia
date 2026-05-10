@@ -1,6 +1,6 @@
 object puenteBrooklyn {
-    method puedeIngresar(objeto) = objeto.pesoEnKg() <= 1000
+    method puedeIngresar(mensajero) = mensajero.pesoEnKg() <= 1000
 }
 object laMatrix {
-    method puedeIngresar(objeto) = objeto.puedeHacerLlamada()
+    method puedeIngresar(mensajero) = mensajero.puedeHacerLlamada()
 }

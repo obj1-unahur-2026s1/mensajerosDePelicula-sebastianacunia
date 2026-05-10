@@ -1,12 +1,12 @@
-object bicicleta{
+object bicicleta {
     method pesoEnKg() = 5
 }
 object camion {
-    var cantidadAcoplados = 2
+    var cantidadAcoplados = 0
 
     method cantidadAcoplados() = cantidadAcoplados
 
-    method pesoEnKg() = 1000 + self.cantidadAcoplados() * 500
+    method pesoEnKg() = 750 + self.cantidadAcoplados() * 500
 
     method engancharAcoplado() {
         cantidadAcoplados += 1
