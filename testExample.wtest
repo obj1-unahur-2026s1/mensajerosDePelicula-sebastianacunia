@@ -2,15 +2,16 @@ import paquetes.*
 import mensajeros.*
 import vehiculos.*
 import destinos.*
+import empresa.*
 
-describe "Test Roberto" {
+describe "Test Roberto - Parte 1" {
   test "Roberto lleva paquete pago en camion con acoplado" {
     paquete.marcarComoPago()
     paquete.cambiarMensajero(roberto)
     paquete.cambiarDestino(puenteBrooklyn)
     roberto.cambiarVehiculo(camion)
     camion.engancharAcoplado()
-    assert.equals(false, paquete.puedeEntregarse())
+    assert.equals(false, roberto.puedeEntregar(paquete))
   }
   test "Roberto lleva paquete pago en camion sin acoplado" {
     paquete.marcarComoPago()
@@ -18,21 +19,51 @@ describe "Test Roberto" {
     paquete.cambiarDestino(puenteBrooklyn)
     roberto.cambiarVehiculo(camion)
     camion.desengancharAcoplado()
-    assert.equals(true, paquete.puedeEntregarse())
+    assert.equals(true, roberto.puedeEntregar(paquete))
   }
 }
-describe "Test Neo" {
+describe "Test Neo - Parte 1" {
   test "Neo con credito lleva paquete no pago a la matrix" {
     paquete.cambiarMensajero(neo)
     paquete.cambiarDestino(laMatrix)
     neo.cargarCredito()
-    assert.equals(false, paquete.puedeEntregarse())
+    assert.equals(false, neo.puedeEntregar(paquete))
   }
   test "Neo con credito lleva paquete pago a la matrix" {
     paquete.marcarComoPago()
     paquete.cambiarMensajero(neo)
     paquete.cambiarDestino(laMatrix)
     neo.cargarCredito()
-    assert.equals(true, paquete.puedeEntregarse())
+    assert.equals(true, neo.puedeEntregar(paquete))
+  }
+}
+describe "Test parte 2" {
+  test "Contratar un mensajero" {
+    empresa.contratarMensajero(neo)
+    assert.equals(2, empresa.mensajeros().size())
+  }
+  test "Despedir un mensajero" {
+    empresa.contratarMensajero(neo)
+    empresa.despedirMensajero(neo)
+    assert.equals(1, empresa.mensajeros().size())
+  }
+  test "Despedir todos los mensajeros" {
+    empresa.despedirTodosLosMensajeros()
+    assert.equals(0, empresa.mensajeros().size())
+  }
+  test "Analizar si la mensajeria es grande" {
+    empresa.contratarMensajero(roberto)
+    empresa.contratarMensajero(neo)
+    assert.equals(true, empresa.esMensajeriaGrande())
+  }
+  test "Puede ser entregado por el primer mensajero" {
+    empresa.contratarMensajero(roberto)
+    paquete.marcarComoPago()
+    paquete.cambiarDestino(laMatrix)
+    assert.equals(true, empresa.elPrimerMensajeroPuedeEntregar(paquete))
+  }
+  test "Peso del ultimo mensajero" {
+    empresa.contratarMensajero(roberto)
+    assert.equals(95, empresa.pesoUltimoMensajero())
   }
 }

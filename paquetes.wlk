@@ -10,8 +10,7 @@ object paquete {
   method esPaquetePago() = esPaquetePago
   method mensajeroAsignado() = mensajeroAsignado
   method destino() = destino
-  method mensajeroPuedeLlegarADestino() = self.mensajeroAsignado().puedeIrA(self.destino())
-  method puedeEntregarse() = self.esPaquetePago() && self.mensajeroPuedeLlegarADestino()
+ 
 
   method marcarComoPago() {
     esPaquetePago = true
